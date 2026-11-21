@@ -1,5 +1,8 @@
 #include <Arduino.h>
-
+// Lab 1A: ESP32 GPIO LED and Button Control
+// LED connected to GPIO 23
+// Push button connected to GPIO 22
+// Button debouncing is implemented with a 50 ms delay
 #define LED_PIN 23
 #define BUTTON_PIN 22
 
