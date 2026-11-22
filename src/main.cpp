@@ -1,45 +1,32 @@
 #include <Arduino.h>
-// Lab 1A: ESP32 GPIO LED and Button Control
-// LED connected to GPIO 23
-// Push button connected to GPIO 22
-// Button debouncing is implemented with a 50 ms delay
-#define LED_PIN 23
-#define BUTTON_PIN 22
+
+// Name: Hasnait Ansari
+// Student number: 26006375
+
+#define LED_PIN 22
+#define BUTTON_PIN 23
 
 bool ledState = HIGH;
 
-int buttonState = LOW;
-int lastButtonReading = LOW;
-
-unsigned long lastDebounceTime = 0;
-const unsigned long debounceDelay = 50;
-
 void setup() {
-    pinMode(LED_PIN, OUTPUT);
-    pinMode(BUTTON_PIN, INPUT_PULLDOWN);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLDOWN);
 
-    digitalWrite(LED_PIN, HIGH);
+  digitalWrite(LED_PIN, ledState);
 }
 
 void loop() {
+  if (digitalRead(BUTTON_PIN) == HIGH) {
+    delay(50);
 
-    int reading = digitalRead(BUTTON_PIN);
+    if (digitalRead(BUTTON_PIN) == HIGH) {
+      ledState = !ledState;
+      digitalWrite(LED_PIN, ledState);
 
-    if (reading != lastButtonReading) {
-        lastDebounceTime = millis();
+      while (digitalRead(BUTTON_PIN) == HIGH) {
+      }
+
+      delay(50);
     }
-
-    if ((millis() - lastDebounceTime) > debounceDelay) {
-
-        if (reading != buttonState) {
-            buttonState = reading;
-
-            if (buttonState == HIGH) {
-                ledState = !ledState;
-                digitalWrite(LED_PIN, ledState);
-            }
-        }
-    }
-
-    lastButtonReading = reading;
+  }
 }
