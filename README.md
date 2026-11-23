@@ -8,7 +8,7 @@
 
 ## Project Description
 
-This repository contains the work completed for Lab 1 of the Embedded Development course.
+This repository contains the work completed for Labs of the Embedded Development course.
 
 The project uses an ESP32 microcontroller programmed with the Arduino framework through PlatformIO in Visual Studio Code.
 
